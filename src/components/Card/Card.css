@@ -1,0 +1,19 @@
+.card-con{
+    border: 1px solid gray;
+    word-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.card-con > p{
+    margin: 20px;
+    color: gray;
+}
+
+.card-con > .cond{
+    color: black;
+}
