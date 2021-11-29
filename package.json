@@ -1,5 +1,5 @@
 {
-  "homepage": "http://nikhilgupta58.github.io/WeatherMap-React",
+  "homepage": "https://nikhilgupta58.github.io/WeatherMap-React",
   "name": "weather",
   "version": "0.1.0",
   "private": true,
@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^12.1.10",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-router-dom": "^6.0.2",
     "react-scripts": "4.0.3",
     "web-vitals": "^1.0.1"
   },

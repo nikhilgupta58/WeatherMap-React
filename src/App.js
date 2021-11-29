@@ -2,6 +2,8 @@ import "./App.css";
 import Search from "./components/Search/Search";
 import React, { useState, useEffect } from "react";
 import Card from "./components/Card/Card";
+import CityContext from "./Context/CityContext";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
   const [city, setCity] = useState("London");
@@ -13,7 +15,6 @@ function App() {
   const [lat, setLat] = useState(51.5085);
   const [lon, setLon] = useState(-0.1257);
   const [weather, setWeather] = useState([]);
-  // const [date, setDate] = useState([Date.now()])
 
   useEffect(() => {
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=8df2cbc6bd3eeb32371085e31bdb213e`;
@@ -49,20 +50,34 @@ function App() {
   }, [weather]);
 
   return (
-    <>
-      <div className="container">
-        <Search city={configCity} />
-        <h1>5-Day Forecast.</h1>
-        <p>
-          {city}, {country}
-        </p>
-        <div className="card-container">
-          {weather.slice(0, 5).map((e, i) => (
-            <Card key={i} temp={e.temp.day} main={e.weather} index={i}/>
-          ))}
+    <Router>
+      <CityContext.Provider value={{ city, configCity }}>
+        <div className="container">
+          <Search city={configCity} />
+          <h1>5-Day Forecast.</h1>
+          <p>
+            {city}, {country}
+          </p>
+          <Routes>
+            <Route
+              path="/WeatherMap-React"
+              element={
+                <div className="card-container">
+                  {weather.slice(0, 5).map((e, i) => (
+                    <Card
+                      key={i}
+                      temp={e.temp.day}
+                      main={e.weather}
+                      index={i}
+                    />
+                  ))}
+                </div>
+              }
+            />
+          </Routes>
         </div>
-      </div>
-    </>
+      </CityContext.Provider>
+    </Router>
   );
 }
 
